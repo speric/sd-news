@@ -1,0 +1,38 @@
+<% 
+	if @page == 0
+		@counter = 1
+	else
+		@counter = ((@page - 1) * 25) + 1 
+	end
+-%>
+
+<% @items.each do |i| -%>
+	<div class="item_container" align="left">
+		<div style="float: left; width: 55px; padding: 3px 8px 0px 0px;" align="center">
+			<a href="/user/<%= i.user.name -%>"><img src="http://news.sensusdivinitatis.com/images/avatars/<%= i.user.profile_pic -%>" class="img_border" border="0"/></a>
+		</div>
+		<div style="float: left; width: 700px;">
+			<div class="item_title">
+				<%= @counter -%>.<a id="up_<%= i.id -%>" href="/vote/<%= i.id -%>"><img src="http://news.sensusdivinitatis.com/images/arrow-up.gif" width="10" height="10" border="0" hspace="3" alt="Click to vote for story"></a>
+				<% if i.url.nil? -%>
+					<a href="/item/<%= i.id -%>">
+				<% else -%>
+					<a href="<%= i.url -%>">
+				<% end -%>
+				<%= i.title -%></a>&nbsp;<span class="comhead">(<%= i.url_host -%>)</span>
+			</div>
+			<% if !i.description.nil? -%>
+				<div class="item_description">
+					<%= h i.description -%>&nbsp;
+				</div>
+			<% end -%>
+			<div class="item_metadata">
+				<span id="score_<%= i.id -%>"><%= i.vote_count -%> points</span> by <a class="blue_no_ul" href="/user/<%= i.user.name -%>"><%= i.user.name -%></a> <%= distance_of_time_in_words(Time.now, i.posted_on) -%> ago | <a href="/item/<%= i.id -%>"><%= i.comment_count -%> comments</a>
+			</div>
+		</div>
+		<div style="clear: both;"></div>
+	</div>
+	<% @counter = @counter + 1 -%>
+<% end -%>
+
+<center><div class="pagination"><%= will_paginate @items %></div></center>

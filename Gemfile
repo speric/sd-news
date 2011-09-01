@@ -7,6 +7,7 @@ gem 'rails', '3.0.8'
 
 gem 'mysql'
 gem 'authlogic'
+gem 'will_paginate', '~> 3.0'
 
 # Deploy with Capistrano
 # gem 'capistrano'

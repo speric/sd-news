@@ -1,14 +1,85 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>SdNews</title>
+  <title>SD News</title>
   <%= stylesheet_link_tag :all %>
   <%= javascript_include_tag :defaults %>
   <%= csrf_meta_tag %>
 </head>
-<body>
-
-<%= yield %>
-
-</body>
+	<body>
+		<center>
+			<div id="main_container" align="justify">
+				<div id="title_container">
+					<div id="site_title"><a href="/">Sensus Divinitatis News</a></div>
+					<div id="rss" align="right">
+						<a href="http://www.twitter.com/reformednews"><img src="/images/twitter-icon.png" border="0"></a>&nbsp;
+						<a href="http://feeds2.feedburner.com/SensusDivinitatisNews"><img src="/images/rss.png" border="0"/></a>
+					</div>
+					<div class="clearer"></div>
+				</div>
+				<div id="site_description">Reformed theology, philosophy, culture, evangelism, and church planting news, chosen by the readers.&nbsp;&nbsp;Curated by <a class="blue_no_ul" href="http://www.sensusdivinitatis.com">Sensus Divinitatis Publishing</a>.</div>
+				<div id="nav">
+					<div id="site_options">
+						<span class="pagetop">
+							<span class="navbar">
+								<a class="blue_no_ul" href="/newest">newest stories</a> | 
+								<%= link_to "submit new story", new_item_url, :class => "blue_no_ul" %> | 
+								<a class="blue_no_ul" href="/comments">latest comments</a> | 
+								<a class="blue_no_ul" href="/leaders">leaders</a> | 
+								<a class="blue_no_ul" href="http://sensusdivinitatis.uservoice.com">give feedback</a>
+								
+							</span>
+						</span>
+					</div>
+					<div id="login_logout" align="right">
+				 	<% if @current_user -%>
+						<span class="pagetop"><%= link_to "Sign In", new_user_session_url, :class => "blue_no_ul" %></span> - 
+						<span class="pagetop"><%= link_to "Sign Up", new_user_url, :class => "blue_no_ul" %></span>
+					<% else -%>
+						<span class="pagetop"><a class="blue_no_ul" href="/user/edit/profile">My Profile</a></span> - 
+						<span class="pagetop"><a class="blue_no_ul" href="/invite">Invite A Friend</a></span> - 
+						<span class="pagetop"><%= link_to "Sign Out", user_session_url, :method => :delete, :class => "blue_no_ul" %></span>
+					<% end -%>
+					</div>
+					<div class="clearer"></div>
+				</div>
+				<div class="line">&nbsp;</div>
+				<% unless flash[:notice].blank? -%>
+					<div id="flash_notice"><%= flash[:notice] -%></div>
+				<% end -%>
+				<% unless flash[:error].blank? -%>
+					<div id="flash_error"><%= flash[:error] -%></div>
+				<% end -%>
+				
+				<div>
+					<div id="content_container" align="justify">
+						<%= yield %>
+					</div>
+					<div style="clear: both;"></div>
+				</div>
+				
+				<div class="line">&nbsp;</div>
+				<div class="bottom_links" align="center">
+					<a href="/about">About</a>&nbsp;
+					<a href="http://feeds2.feedburner.com/SensusDivinitatisNews">RSS</a>&nbsp;|
+					<!--<a href="faq">FAQ</a>&nbsp;| -->
+					<a href="/guidelines">Submission Guidelines</a>&nbsp;|
+					<a href="contact">Contact</a>&nbsp;<!--|
+					<a href="legal#tos">Terms of Service</a>&nbsp;|
+					<a href="legal#privacy">Privacy Policy</a>--><br/><br/>
+					Powered by <a href="https://github.com/speric/social-news">social-news</a>, producted by <a href="http://twitter.com/ericfarkas">speric</a>
+				</div>
+			</div>
+		</center>
+		<script type="text/javascript">
+			var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+			document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+		</script>
+		<script type="text/javascript">
+			try {
+				var pageTracker = _gat._getTracker("UA-1120529-13");
+				pageTracker._trackPageview();
+			} catch(err) {}
+		</script>
+	</body>
 </html>

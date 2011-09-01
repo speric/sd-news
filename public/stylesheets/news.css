@@ -1,0 +1,103 @@
+body  { font-family:Verdana; font-size:10pt; color:#36393D; background: #fAfAfA url("/images/background.png") repeat-y center;}
+td    { font-family:Verdana; font-size:10pt; color:#333; }
+h1    { color: #d33e3e; font: 15pt Georgia, "Times New Roman", Times, serif; text-shadow: 1px 1px 1px #fff; }
+h2    { font-family:Verdana, sans-serif; font-size: 11pt; color:#828282; }
+
+textarea { font-family:Georgia; font-size:10pt; color:#000000; }
+
+a:link    { color:#4096EE; text-decoration:underline; }
+a:visited { color:#828282; text-decoration:none; }
+a:hover   { color:#d33e3e; text-decoration:underline;}
+
+.default { font-family:Verdana, sans-serif; font-size: 10pt; color:#828282; }
+.admin   { font-family:Verdana, sans-serif; font-size:8.5pt; color:#000; }
+
+.adtitle { font-family:Verdana, sans-serif; font-size:  9pt; color:#828282; }
+.subtext { font-family:Verdana, sans-serif; font-size:  7pt; color:#828282; }
+.nmlinks { font-family:Verdana, sans-serif; font-size:  8pt; color:#828282; }
+
+.pagetop { color:#555; font: 12pt Georgia, "Times New Roman", Times, serif; text-shadow: 1px 1px 1px #FFF; }
+.navbar  { text-transform: capitalize; }
+.comhead { font-family:Verdana, sans-serif; font-size:  8pt; color:#828282; }
+.comment { font-family:Verdana, sans-serif; font-size:  9pt; }
+.dead    { font-family:Verdana, sans-serif; font-size:  9pt; color:#ddd; }
+
+.comment a:link, .comment a:visited { text-decoration:underline; }
+.dead a:link, .dead a:visited { color:#ddd; }
+
+.sidesel a:link, .sidesel a:visited { color:#d33e3e; }
+
+.topsel a:link, .topsel a:visited { color:#d33e3e; }
+
+.subtext a:link, .subtext a:visited { color:#828282; }
+.subtext a:hover { text-decoration:underline; }
+
+.comhead a:link, .subtext a:visited { color:#828282; }
+.comhead a:hover { text-decoration:underline; }
+
+
+.pagebreak {page-break-before:always}
+pre { overflow: hidden; padding: 2px; }
+pre:hover {overflow:auto}
+
+p span.displaynoemail { display:none }
+
+.description{color: #333; font: 10pt Georgia, "Times New Roman", Times, serif; }
+
+.title{ color: #9c9c9c; font: 12pt Georgia, "Times New Roman", Times, serif; }
+.title a:hover, .pagetop a:hover { color:#d33e3e; text-decoration: underline; }
+.title a:link {text-decoration:underline;}
+
+#site_title						{font-family: Helvetica, Arial, sans-serif; font-size: 28px; font-weight: bold; letter-spacing: -1px; float: left; width: 850px;}
+#site_title a:link    {color:#36393D; text-decoration:none; }
+#site_title a:visited {color:#36393D; text-decoration:none; }
+#site_title a:hover   {color:#36393D; text-decoration:underline;}
+#main_container{width: 920px; padding: 0px 0px 0px 0px;}
+#title_container{width: 100%; margin-left: -1px;}
+#rss{float: left; width: 70px;}
+#site_description{font-family: Georgia, "Times New Roman", Times, serif; font-size: 12px;padding-bottom: 15px;}
+#nav {width: 100%;}
+#site_options {float: left; width: 600px;}
+#login_logout{float: left; width: 320px;}
+#content_container{padding: 5px 5px 0px 0px; width: 780px; float: left;}
+#right_sidebar{padding-top: 5px; float: left; width: 135px; font-size: 10px; font-weight: bold;}
+
+.item_container{padding: 0px 0px 15px 0px;}
+.item_title{color:#9c9c9c; font:12pt Georgia, "Times New Roman", Times, serif; padding-bottom: 3px;}
+.item_description{font:10pt Georgia, "Times New Roman", Times, serif; width: 100%; padding-bottom: 3px;}
+.line {margin-top: 5px; border-top: 1px solid #cecece; width:100%; height:2px; display:block;}
+.bottom_links {font-family: Verdana, sans-serif; font-size:  8pt; color:#828282; padding-top: 5px;}
+.clearer{clear: both;}
+
+div.pagination{padding: 3px; margin: 3px;}
+div.pagination a {padding: 2px 5px 2px 5px; margin: 2px; border: 1px solid #333; text-decoration: none; /* no underline */ color: #333;}
+div.pagination a:hover, div.pagination a:active {border: 1px solid #828282; color: #000;}
+div.pagination span.current {padding: 2px 5px 2px 5px; margin: 2px; border: 1px solid #333; font-weight: bold; background-color: #333; color: #FFF;}
+div.pagination span.disabled {padding: 2px 5px 2px 5px; margin: 2px; border: 1px solid #EEE; color: #DDD;}
+
+.borderimg { background:#fff none repeat scroll 0 0; border:medium none; padding:5px; }
+.news_sensus{font-weight:bold;}
+.bold{font-weight:bold;}
+#comments {padding:15px 0 15px 0;}
+#comments .comment{padding-bottom:15px;}
+#comments .comment_metadata{padding-bottom:5px;}
+#post_comment{padding-top:10px;}
+#flash_notice{background-color:#FFFFC8; padding:5px; border:1px solid #f0e080; font-weight:bold; letter-spacing:-1px; margin:5px 0 5px 0;}
+#flash_error{font-weight:bold; color:#c00; padding:5px; letter-spacing:-1px; border:1px solid #e04020; background-color:#f0e0e0; margin:5px 0 5px 0;}
+#flash_announcement{font-family: Georgia, "Times New Roman", Times; font-size: 14px; font-weight: bold; background-color:#FFFFC8; padding:5px; border:1px solid #f0e080; letter-spacing:-1px; margin:5px 0 5px 0;}
+
+a.blue :link    { color:#4096EE; text-decoration:underline;}
+a.blue :visited { color:#828282; text-decoration:underline;}
+a.blue :hover   { color:#d33e3e; text-decoration:underline;}
+
+a.blue_no_ul:link, a.blue_no_ul:visited { color:#4096EE; text-decoration:none;}
+a.blue_no_ul:hover   { color:#d33e3e; text-decoration:underline;}
+
+.item_metadata{width: 100%; text-align:left; font-size:10px; color:#969696;}
+
+.disable {background-color: #CF110C;color: #fff; font-weight: bold; padding: 5px;}
+#user_profile {font-family: Georgia, "Times New Roman", Times; width: 600px;}
+#user_profile .username{font: 18pt Georgia, "Times New Roman", Times, serif;}
+.profile_cell{padding: 3px 0px 3px 0px;}
+.img_border{ padding: 2px !important; margin: 0px !important; border: 1px solid #D6D6D6;}
+.flickr_label{font: 8pt Georgia, "Times New Roman", Times, serif;}
