@@ -6,9 +6,7 @@ gem 'rails', '3.0.8'
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 
 gem 'mysql2', '~> 0.2.6'
-
-# Use unicorn as the web server
-# gem 'unicorn'
+gem 'authlogic'
 
 # Deploy with Capistrano
 # gem 'capistrano'
