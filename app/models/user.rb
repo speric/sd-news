@@ -5,6 +5,9 @@ class User < ActiveRecord::Base
     c.validate_email_field  = false    
   end
   
+  validates :name, :presence => true, :uniqueness => true
+  validates :password, :confirmation => true, :length => { :minimum => 4 }
+  
   def admin?
 		self.admin
 	end
