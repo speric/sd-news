@@ -26,7 +26,7 @@ class ItemsController < ApplicationController
   # GET /items/1
   # GET /items/1.xml
   def show
-    @item = Item.find(params[:id], :include => [:user, :comments])
+    @item = Item.find(params[:id], :include => [:user, {:comments => :user}])
 		@comment = Comment.new
 		
     respond_to do |format|
