@@ -2,7 +2,7 @@ class Item < ActiveRecord::Base
 	validates :title, :presence => true
 	validates :url, :uniqueness => true
 	
-	has_many :comments
+	has_many :comments, :dependent => :destroy
 	belongs_to :user
 	
   cattr_reader :per_page

@@ -13,6 +13,9 @@
 	</div>
 	<div class="item_metadata">
 		<span id="score_<%= item.id -%>"><%= item.vote_count -%> points</span> by <%= link_to item.user.name, user_path(item.user.name), :class => "blue_no_ul" %> <%= time_ago_in_words(item.posted_on) -%> ago | <%= link_to "#{item.comments.size} comments", item_path(item) %>
+		<% if @current_user and @current_user.admin? %>
+		 | <%= link_to "Delete", item_path(item), :method => :delete, :confirm => "Are you sure?" %>
+		<% end %>
 	</div>
 </div>
 	
