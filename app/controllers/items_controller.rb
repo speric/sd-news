@@ -5,8 +5,18 @@ class ItemsController < ApplicationController
   # GET /items.xml
   def index
    	@page = params[:page].to_i || 0
-		@items = Item.paginate :page => params[:page], :order => "score desc", :include => :user
-		@title = "Page #{@page}" if @page > 1
+   	if params[:user_id].blank?
+   		@items = Item.page(params[:page]).conditions(:user_id => @user.id).order('score desc').includes(:user)
+			@title = "Page #{@page}" if @page > 1
+		else
+			@user = User.find_by_name(params[:user_id])
+			@items = Item.page(params[:page]).where(:user_id => @user.id).order('posted_on desc').includes(:user)
+			if @page > 1
+				@title = "#{@user.name}'s Submissions | Page #{@page}" if @page > 1
+			else
+				@title = "#{@user.name}'s Submissions"
+			end
+		end
     respond_to do |format|
       format.html # index.html.erb
       format.xml  { render :xml => @items }

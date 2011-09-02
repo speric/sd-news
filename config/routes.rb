@@ -1,7 +1,10 @@
 SdNews::Application.routes.draw do
   match 'items/newest' => 'items#newest'
   resources :items
-  resources :users
+  resources :users do 
+  	resources :items
+  end
+  resources :ads
   resource :user_session
   resource :account, :controller => "users"
 

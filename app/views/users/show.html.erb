@@ -3,5 +3,5 @@
 <p><b>Bio:</b><br/>
 <%= h @user.profile_bio %>
 
-<p><a href="/user/<%= @user.name %>/items">Submissions</a><br/>
+<p><%= link_to "Submissions", user_items_path(@user.name) %><br/>
 </p>
