@@ -3,6 +3,7 @@ SdNews::Application.routes.draw do
   resources :items
   resources :users
   resource :user_session
+  resource :account, :controller => "users"
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
