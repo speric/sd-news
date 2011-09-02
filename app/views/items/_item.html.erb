@@ -1,6 +1,9 @@
 <div id="item_<%= item.id %>" class="item_container" align="left">
 	<div class="item_title">
-		<%= @counter -%>.<a id="up_<%= item.id -%>" href="/vote/<%= item.id -%>"><img src="http://news.sensusdivinitatis.com/images/arrow-up.gif" width="10" height="10" border="0" hspace="3" alt="Click to vote for story"></a>
+		<% if @counter %>
+			<%= @counter -%>.
+		<% end %>
+		<a id="up_<%= item.id -%>" href="/vote/<%= item.id -%>"><img src="/images/arrow-up.gif" width="10" height="10" border="0" hspace="3" alt="Click to vote for story"></a>
 		<% if item.url.blank? -%>
 			<%= link_to item.title, item_path(item) %>
 		<% else -%>
@@ -9,10 +12,7 @@
 		&nbsp;<span class="comhead">(<%= h item.url_host -%>)</span>
 	</div>
 	<div class="item_metadata">
-		<span id="score_<%= item.id -%>"><%= item.vote_count -%> points</span>
-		&nbsp;by <a class="blue_no_ul" href="/users/<%= item.user.name -%>"><%= item.user.name -%></a>
-		&nbsp;<%= time_ago_in_words(item.posted_on) -%> ago |
-		&nbsp;<a href="/item/<%= item.id -%>"><%= item.comment_count -%> comments</a>
+		<span id="score_<%= item.id -%>"><%= item.vote_count -%> points</span> by <%= link_to item.user.name, user_path(item.user.name), :class => "blue_no_ul" %> <%= time_ago_in_words(item.posted_on) -%> ago | <%= link_to "#{item.comments.size} comments", item_path(item) %>
 	</div>
 </div>
 	

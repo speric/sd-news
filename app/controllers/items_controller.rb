@@ -6,7 +6,7 @@ class ItemsController < ApplicationController
   def index
    	@page = params[:page].to_i || 0
    	if params[:user_id].blank?
-   		@items = Item.page(params[:page]).order('score desc').includes(:user)
+   		@items = Item.page(params[:page]).order('score desc').includes(:user, :comments)
 			@title = "Page #{@page}" if @page > 1
 		else
 			@user = User.find_by_name(params[:user_id])
@@ -26,8 +26,9 @@ class ItemsController < ApplicationController
   # GET /items/1
   # GET /items/1.xml
   def show
-    @item = Item.where(:id => params[:id]).includes(:user)
-
+    @item = Item.find(params[:id], :include => [:user, :comments])
+		@comment = Comment.new
+		
     respond_to do |format|
       format.html # show.html.erb
       format.xml  { render :xml => @item }

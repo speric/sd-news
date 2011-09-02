@@ -1,13 +1,29 @@
 class Item < ActiveRecord::Base
-	validates_presence_of :title, :message => "Item title is required."
-	validates_presence_of :description, :message => "Please enter a short description."
-	validates_uniqueness_of :url, :message => "That link has already been posted."
-	validates_length_of :description, :maximum => 350, :message => "Please limit the description or excerpt to 350 characters."
+	validates :title, :presence => true
+	validates :url, :uniqueness => true
 	
 	has_many :comments
 	belongs_to :user
 	
-  #will_paginate stuff
   cattr_reader :per_page
   @@per_page = 25
+
+	before_save :parse_host_from_url
+  
+	def parse_host_from_url
+		self.url_host = "news.sensusdivinitatis.com" if self.url.empty?
+  
+   	parsed_url = URI.parse(self.url)
+  
+   	self.url_host = "cal.vini.st" if parsed_url.host == "cal.vini.st"
+  
+   	foo = parsed_url.host.split(".")
+   	if foo[1] == "wordpress" or foo[1] == "blogspot" or foo[1] == "posterous" or foo[1] == "typepad" or foo[1] == "blogs" or foo[1] == "squarespace"
+			self.url_host = foo.join(".")
+		elsif foo.last == "uk"
+			self.url_host = foo[foo.length - 3, foo.length].join(".")
+		else
+			self.url_host = foo[foo.length - 2, foo.length].join(".")
+		end
+  end
 end

@@ -1,4 +1,6 @@
 SdNews::Application.routes.draw do
+  resources :comments
+
   match 'items/newest' => 'items#newest'
   resources :items
   resources :users do 
