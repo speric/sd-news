@@ -1,5 +1,7 @@
-<p id="notice"><%= notice %></p>
+<h1><%= @user.name %></h1>
+<p><b>Joined:</b> <%= h time_ago_in_words(@user.created_at) %> ago</p>
+<p><b>Bio:</b><br/>
+<%= h @user.profile_bio %>
 
-
-<%= link_to 'Edit', edit_user_path(@user) %> |
-<%= link_to 'Back', users_path %>
+<p><a href="/user/<%= @user.name %>/items">Submissions</a><br/>
+</p>

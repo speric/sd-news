@@ -1,9 +1,13 @@
-<h1>Edit My Account</h1>
+<h1>Edit My Account - <%= @user.name %></h1>
 
-<% form_for @user, :url => account_path do |f| %>
-  <%= f.error_messages %>
-  <%= render :partial => "form", :object => f %>
+<% form_for @user, :url => user_path do |f| %>
+ 	<%= f.label :email_address %><br/>
+ 	<%= f.text_field :email_address, :size => 35 %><br/>
+ 	<br/>
+ 	<%= f.label :short_bio %><br/>
+ 	<%= f.text_area :profile_bio, :rows => 10, :columns => 25 %><br/>
+ 	<br/>  
   <%= f.submit "Update" %>
 <% end %>
 
-<br /><%= link_to "My Profile", account_path %
+<br /><%= link_to "My Profile", user_path(@user.name) %>
