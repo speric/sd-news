@@ -4,15 +4,7 @@
 <div id="comments">
 	<a name="comments"></a>
 	<% @item.comments.each do |c| -%>
-	<div class="comment" id="comment_<%= c.id -%>">
-		<a name="<%= c.id -%>"></a>
-		<div class="comment_metadata">
-			<span class="subtext"><%= link_to c.user.name, user_path(c.user.name) %>&nbsp;<%= time_ago_in_words(c.comment_post_date) -%> ago</span>
-		</div>
-		<% content = c.comment.gsub(/\n/, '<br/>') -%>
-		<%= c.comment if content.nil? -%>
-		<%= content if !content.nil? -%> 
-	</div>
+		<%= render c %>
 	<% end -%>
 </div>
 <% end -%>
