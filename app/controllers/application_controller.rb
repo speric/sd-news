@@ -3,6 +3,7 @@ class ApplicationController < ActionController::Base
 	helper :all
   helper_method :current_user_session, :current_user
   filter_parameter_logging :password, :password_confirmation
+  before_filter :current_user
   
   private
   def current_user_session
@@ -41,4 +42,8 @@ class ApplicationController < ActionController::Base
     redirect_to(session[:return_to] || default)
     session[:return_to] = nil
   end
+  
+  def require_admin
+		redirect_to root_path unless @current_user.admin?
+	end
 end

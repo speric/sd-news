@@ -4,4 +4,8 @@ class User < ActiveRecord::Base
     c.validate_login_field  = false
     c.validate_email_field  = false    
   end
+  
+  def admin?
+		self.admin
+	end
 end

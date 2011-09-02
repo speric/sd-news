@@ -1,4 +1,6 @@
 class ItemsController < ApplicationController
+	before_filter :require_user, :only => [:new, :create, :edit, :update]
+	before_filter :require_admin, :only => :destroy
   # GET /items
   # GET /items.xml
   def index
@@ -81,4 +83,16 @@ class ItemsController < ApplicationController
       format.xml  { head :ok }
     end
   end
+  
+  # GET /items/newest
+  # GET /items/newest.xml
+  def newest
+ 		@page = params[:page].to_i || 0
+		@items = Item.page(params[:page]).order('posted_on desc').includes(:user)
+		@title = "Page #{@page}" if @page > 1
+    respond_to do |format|
+      format.html { render :template => "items/index" }
+      format.xml  { render :xml => @items }
+    end 	
+	end
 end

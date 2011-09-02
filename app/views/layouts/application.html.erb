@@ -22,19 +22,16 @@
 					<div id="site_options">
 						<span class="pagetop">
 							<span class="navbar">
-								<a class="blue_no_ul" href="/newest">newest stories</a> | 
+								<a class="blue_no_ul" href="/items/newest">newest stories</a> | 
 								<%= link_to "submit new story", new_item_url, :class => "blue_no_ul" %> | 
 								<a class="blue_no_ul" href="/comments">latest comments</a> | 
-								<a class="blue_no_ul" href="/leaders">leaders</a> | 
-								<a class="blue_no_ul" href="http://sensusdivinitatis.uservoice.com">give feedback</a>
-								
+								<a class="blue_no_ul" href="http://sensusdivinitatis.uservoice.com">give feedback</a>							
 							</span>
 						</span>
 					</div>
 					<div id="login_logout" align="right">
 				 	<% if @current_user -%>
 						<span class="pagetop"><a class="blue_no_ul" href="/user/edit/profile">My Profile</a></span> - 
-						<span class="pagetop"><a class="blue_no_ul" href="/invite">Invite A Friend</a></span> - 
 						<span class="pagetop"><%= link_to "Sign Out", user_session_url, :method => :delete, :class => "blue_no_ul" %></span>
 					<% else -%>
 						<span class="pagetop"><%= link_to "Sign In", new_user_session_url, :class => "blue_no_ul" %></span> - 
