@@ -1,5 +1,37 @@
-<h1>New item</h1>
+<h1>New Item</h1>
 
-<%= render 'form' %>
-
-<%= link_to 'Back', items_path %>
+<%= form_for @item, items_path do |f| %>
+	<p>
+		<%= f.label :title %><br/>
+		<%= f.text_field :title, :size => 80 %>
+	</p>
+	<p>
+		<%= f.label :url %><br/>
+		<%= f.text_field :url, :size => 80 %>
+	</p>
+	<p>
+		<label>Question (only if not submitting a link; 350 characters max, no HTML)</label><br/>
+		<%= f.text_area :description, :rows => 5, :cols => 78, :onKeyUp => "char_count('item_description', 'chars_left');" %><br/>
+		<span id="chars_left">350 characters left</span>
+	</p>
+	<%= f.hidden_field :user_id, :value => @current_user.id %>
+	<%= f.submit "Submit" %>
+	<p>
+		<ul>
+      <li>Please read <b><a href="guidelines">Submission Guidelines</a></b> before submitting.</li>
+     	<li>If the link is a video or pdf, please warn us by appending (vid) or (pdf) to the end of the title.</li>
+      <li>Asking a question? Leave url blank to submit a question for discussion and prefix <b>"Ask SD: "</b> in front of the title. If there is no url, the text (if any) will appear at the top of the comments page.</li>
+    </ul>
+   </p>
+<% end %>
+<script>
+	function char_count(txt_box, msg_span) {
+		var length = $(txt_box).value.length;
+		if (length <= 350){
+			$(msg_span).innerHTML = 350 - length + " characters left.";
+		}else{
+			$(msg_span).innerHTML = "0 characters left.";
+			$(txt_box).value = $(txt_box).value.substr(0, 350);
+		}
+	}
+</script>

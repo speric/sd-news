@@ -6,7 +6,7 @@ class ItemsController < ApplicationController
   def index
    	@page = params[:page].to_i || 0
    	if params[:user_id].blank?
-   		@items = Item.page(params[:page]).conditions(:user_id => @user.id).order('score desc').includes(:user)
+   		@items = Item.page(params[:page]).order('score desc').includes(:user)
 			@title = "Page #{@page}" if @page > 1
 		else
 			@user = User.find_by_name(params[:user_id])
@@ -26,7 +26,7 @@ class ItemsController < ApplicationController
   # GET /items/1
   # GET /items/1.xml
   def show
-    @item = Item.find(params[:id])
+    @item = Item.where(:id => params[:id]).includes(:user)
 
     respond_to do |format|
       format.html # show.html.erb
@@ -57,7 +57,7 @@ class ItemsController < ApplicationController
 
     respond_to do |format|
       if @item.save
-        format.html { redirect_to(@item, :notice => 'Item was successfully created.') }
+        format.html { redirect_to(@item, :notice => 'Submission successful') }
         format.xml  { render :xml => @item, :status => :created, :location => @item }
       else
         format.html { render :action => "new" }
