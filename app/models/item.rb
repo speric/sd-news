@@ -10,7 +10,7 @@ class Item < ActiveRecord::Base
   	@@per_page = 25
 
 	before_save :parse_host_from_url
-	after_save :create_vote
+	after_create :create_vote
 
 	def parse_host_from_url
 		if self.description.blank?
