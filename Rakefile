@@ -5,3 +5,11 @@ require File.expand_path('../config/application', __FILE__)
 require 'rake'
 
 SdNews::Application.load_tasks
+
+require(File.join(File.dirname(__FILE__), 'config', 'boot'))
+
+require 'rake'
+require 'rake/testtask'
+require 'rake/rdoctask'
+
+require 'tasks/rails'
