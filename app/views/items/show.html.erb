@@ -8,11 +8,12 @@
 	<% end -%>
 </div>
 <% end -%>
-
-<%= form_for @comment, comments_path do |f| %>
-	<span class="bold">Post A Comment</span><br/>
-	<%= f.text_area :comment, :cols => 85, :rows => 7 %><br/>
-	<%= f.hidden_field :item_id, :value => @item.id %>
-	<%= f.hidden_field :user_id, :value => @current_user.id %>
-	<%= f.submit "Post Comment" %>
+<% if @current_user %>
+	<%= form_for @comment, comments_path do |f| %>
+		<span class="bold">Post A Comment</span><br/>
+		<%= f.text_area :comment, :cols => 85, :rows => 7 %><br/>
+		<%= f.hidden_field :item_id, :value => @item.id %>
+		<%= f.hidden_field :user_id, :value => @current_user.id %>
+		<%= f.submit "Post Comment" %>
+	<% end %>
 <% end %>
