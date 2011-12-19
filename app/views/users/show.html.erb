@@ -1,7 +1,5 @@
 <h1><%= @user.name %></h1>
 <p><b>Joined:</b> <%= h time_ago_in_words(@user.created_at) %> ago</p>
-<p><b>Bio:</b><br/>
-<%= h @user.profile_bio %>
-
+<!--<p><b>Bio:</b><br/>-->
 <p><%= link_to "Submissions", user_items_path(@user.name) %><br/>
 </p>
