@@ -18,6 +18,7 @@ namespace :items do
   		Twitter.update("#{item.title} http://news.sensusdivinitatis.com/items/#{item.id}")
   	end
   	item.twitterd = true
+  	item.twitterd_on = Time.now
   	item.save
   end
 end
