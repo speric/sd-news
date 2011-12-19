@@ -10,7 +10,8 @@ class Item < ActiveRecord::Base
   	@@per_page = 25
 
 	before_save :parse_host_from_url
-  
+	after_save :create_vote
+
 	def parse_host_from_url
 		if self.description.blank?
 			parsed_url = URI.parse(self.url)
@@ -28,5 +29,9 @@ class Item < ActiveRecord::Base
 		else
 	  		self.url_host = "news.sensusdivinitatis.com"
 		end
+  	end
+
+  	def create_vote
+  		Vote.create(:user_id => self.user_id, :item_id => self.id)
   	end
 end
