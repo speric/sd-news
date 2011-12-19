@@ -15,6 +15,7 @@ SdNews::Application.routes.draw do
   match 'about' => 'home#about'
   match 'guidelines' => 'home#guidelines'
   match 'contact' => 'home#contact'
+  match 'item/:id' => 'items#show'
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
