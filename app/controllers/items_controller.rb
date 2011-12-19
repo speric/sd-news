@@ -5,12 +5,13 @@ class ItemsController < ApplicationController
   # GET /items.xml
   def index
    	@page = params[:page].to_i || 0
+    @item_vote = Vote.new
    	if params[:user_id].blank?
    		@items = Item.page(params[:page]).order('score desc').includes(:user, :comments)
 			@title = "Page #{@page}" if @page > 1
 		else
 			@user = User.find_by_name(params[:user_id])
-			@items = Item.page(params[:page]).where(:user_id => @user.id).order('posted_on desc').includes(:user)
+			@items = Item.page(params[:page]).where(:user_id => @user.id).order('created_at desc').includes(:user)
 			if @page > 1
 				@title = "#{@user.name}'s Submissions | Page #{@page}" if @page > 1
 			else
@@ -28,7 +29,8 @@ class ItemsController < ApplicationController
   def show
     @item = Item.find(params[:id], :include => [:user, {:comments => :user}])
 		@comment = Comment.new
-		
+		@item_vote = Vote.new
+    
     respond_to do |format|
       format.html # show.html.erb
       format.xml  { render :xml => @item }
@@ -99,8 +101,9 @@ class ItemsController < ApplicationController
   # GET /items/newest.xml
   def newest
  		@page = params[:page].to_i || 0
-		@items = Item.page(params[:page]).order('posted_on desc').includes(:user)
+		@items = Item.page(params[:page]).order('created_at desc').includes(:user)
 		@title = "Page #{@page}" if @page > 1
+    @item_vote = Vote.new
     respond_to do |format|
       format.html { render :template => "items/index" }
       format.xml  { render :xml => @items }

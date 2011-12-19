@@ -6,7 +6,6 @@ class User < ActiveRecord::Base
   end
   
   validates :name, :presence => true, :uniqueness => true
-  #validates :password, :confirmation => true, :length => { :minimum => 4 }
   validates :email_address, :presence => true
   
   def admin?

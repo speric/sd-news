@@ -1,21 +1,35 @@
 <div id="item_<%= item.id %>" class="item_container" align="left">
 	<div class="item_title">
-		<% if @counter %>
-			<%= @counter -%>.
-		<% end %>
-		<a id="up_<%= item.id -%>" href="/vote/<%= item.id -%>"><img src="/images/arrow-up.gif" width="10" height="10" border="0" hspace="3" alt="Click to vote for story"></a>
-		<% if item.url.blank? -%>
-			<%= link_to item.title, item_path(item) %>
-		<% else -%>
-			<%= link_to item.title, item.url %>
-		<% end -%>
-		&nbsp;<span class="comhead">(<%= h item.url_host -%>)</span>
+		<div class="floater">
+			<% if @counter %>
+				<%= @counter -%>.
+			<% end %>
+		</div>
+		<div class="floater">
+			<% form_for @item_vote, :url => item_votes_path(item) do |f| %>
+				<%= f.hidden_field :item_id, :value => item.id %>
+				<%= f.hidden_field :user_id, :value => (@current_user ? @current_user.id : "") %>
+				<%= image_submit_tag("arrow-up.gif", :width => "10", :height => "10", :border => "0", :hspace => "3", :alt => "Click to vote for story") %>
+			<% end %>
+		</div>
+		<div class="floater">
+			<% if item.description.blank? -%>
+				<%= link_to item.title, item.url %>
+			<% else -%>
+				<%= link_to item.title, item_path(item) %>
+			<% end -%>
+			&nbsp;<span class="comhead">(<%= h item.url_host -%>)</span>
+		</div>
+		<div class="clearer"></div>
 	</div>
 	<div class="item_metadata">
-		<span id="score_<%= item.id -%>"><%= item.vote_count -%> points</span> by <%= link_to item.user.name, user_path(item.user.name), :class => "blue_no_ul" %> <%= time_ago_in_words(item.posted_on) -%> ago | <%= link_to "#{item.comments.size} comments", item_path(item) %>
+		<span id="score_<%= item.id -%>"><%= item.votes.size -%> points</span> by <%= link_to item.user.name, user_path(item.user.name), :class => "blue_no_ul" %> <%= time_ago_in_words(item.created_at) -%> ago | <%= link_to "#{item.comments.size} comments", item_path(item) %>
 		<% if @current_user and @current_user.admin? %>
 		 | <%= link_to "Delete", item_path(item), :method => :delete, :confirm => "Are you sure?" %>
 		<% end %>
 	</div>
+	<% if controller.action_name == "show" and !item.description.blank? %>
+		<p><%= h item.description %></p>
+	<% end %>
 </div>
 	

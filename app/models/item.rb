@@ -1,29 +1,32 @@
 class Item < ActiveRecord::Base
 	validates :title, :presence => true
-	validates :url, :uniqueness => true
+	validates :url, :uniqueness => true, :unless => "url.blank?"
 	
 	has_many :comments, :dependent => :destroy
+	has_many :votes, :dependent => :destroy
 	belongs_to :user
 	
-  cattr_reader :per_page
-  @@per_page = 25
+  	cattr_reader :per_page
+  	@@per_page = 25
 
 	before_save :parse_host_from_url
   
 	def parse_host_from_url
-		self.url_host = "news.sensusdivinitatis.com" if self.url.empty?
-  
-   	parsed_url = URI.parse(self.url)
-  
-   	self.url_host = "cal.vini.st" if parsed_url.host == "cal.vini.st"
-  
-   	foo = parsed_url.host.split(".")
-   	if foo[1] == "wordpress" or foo[1] == "blogspot" or foo[1] == "posterous" or foo[1] == "typepad" or foo[1] == "blogs" or foo[1] == "squarespace"
-			self.url_host = foo.join(".")
-		elsif foo.last == "uk"
-			self.url_host = foo[foo.length - 3, foo.length].join(".")
+		if self.description.blank?
+			parsed_url = URI.parse(self.url)
+	  
+	   		self.url_host = "cal.vini.st" if parsed_url.host == "cal.vini.st"
+	  
+	   		host = parsed_url.host.split(".")
+	   		if host[1] == "wordpress" or host[1] == "blogspot" or host[1] == "posterous" or host[1] == "typepad" or host[1] == "blogs" or host[1] == "squarespace"
+				self.url_host = host.join(".")
+			elsif foo.last == "uk"
+				self.url_host = host[host.length - 3, host.length].join(".")
+			else
+				self.url_host = host[host.length - 2, host.length].join(".")
+			end
 		else
-			self.url_host = foo[foo.length - 2, foo.length].join(".")
+	  		self.url_host = "news.sensusdivinitatis.com"
 		end
-  end
+  	end
 end

@@ -1,5 +1,16 @@
 <h1>New Item</h1>
 
+<% if @item.errors.any? %>
+	<div id="error_explanation">
+  	<h2><%= pluralize(@item.errors.count, "error") %> prohibited this item from being saved:</h2>
+		<ul>
+    	<% @item.errors.full_messages.each do |msg| %>
+      		<li><%= msg %></li>
+     	<% end %>
+     	</ul>
+    </div>
+<% end %>
+
 <%= form_for @item, items_path do |f| %>
 	<p>
 		<%= f.label :title %><br/>
@@ -20,7 +31,7 @@
 		<ul>
       <li>Please read <b><a href="guidelines">Submission Guidelines</a></b> before submitting.</li>
      	<li>If the link is a video or pdf, please warn us by appending (vid) or (pdf) to the end of the title.</li>
-      <li>Asking a question? Leave url blank to submit a question for discussion and prefix <b>"Ask SD: "</b> in front of the title. If there is no url, the text (if any) will appear at the top of the comments page.</li>
+      	<li>Asking a question? Leave url blank to submit a question for discussion and prefix <b>"Ask SD: "</b> in front of the title. If there is no url, the text (if any) will appear at the top of the comments page.</li>
     </ul>
    </p>
 <% end %>
