@@ -9,7 +9,7 @@ class Item < ActiveRecord::Base
   	cattr_reader :per_page
   	@@per_page = 25
 
-	before_save :parse_host_from_url
+	before_creare :parse_host_from_url
 	after_create :create_vote
 
 	def parse_host_from_url
