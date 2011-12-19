@@ -1,4 +1,4 @@
-namespace :talent do
+namespace :items do
   desc "Update Item scores based on votes, age, etc."
   task(:update_item_scores => :environment) do
   	time = Time.now
