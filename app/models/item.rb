@@ -20,7 +20,7 @@ class Item < ActiveRecord::Base
 	   		host = parsed_url.host.split(".")
 	   		if host[1] == "wordpress" or host[1] == "blogspot" or host[1] == "posterous" or host[1] == "typepad" or host[1] == "blogs" or host[1] == "squarespace"
 				self.url_host = host.join(".")
-			elsif foo.last == "uk"
+			elsif host.last == "uk"
 				self.url_host = host[host.length - 3, host.length].join(".")
 			else
 				self.url_host = host[host.length - 2, host.length].join(".")
