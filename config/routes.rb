@@ -12,6 +12,10 @@ SdNews::Application.routes.draw do
   resource :user_session
   resource :account, :controller => "users"
 
+  match 'about' => 'home#about'
+  match 'guidelines' => 'home#guidelines'
+  match 'contact' => 'home#contact'
+
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
