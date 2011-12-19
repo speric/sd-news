@@ -8,4 +8,16 @@ namespace :items do
 		item.save 
 	end
   end
+
+  desc "Tweet highest ranked item"
+  task(:tweet => :environment) do
+  	item = Item.where("user_id = 1 and twittered = 0").order("score desc").last
+  	if item.description.blank?
+  		Twitter.update("#{item.title} #{item.url}")
+  	else
+  		Twitter.update("#{item.title} http://news.sensusdivinitatis.com/items/#{item.id}")
+  	end
+  	item.twittered = true
+  	item.save
+  end
 end
